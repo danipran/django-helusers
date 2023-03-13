@@ -2,9 +2,9 @@ name: Run tests
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master_gha_test ]
   pull_request:
-    branches: [ master ]
+    branches: [ master_gha_test ]
 
 jobs:
   test:
