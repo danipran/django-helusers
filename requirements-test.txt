@@ -1,0 +1,10 @@
+# This is for running tox
+coverage
+django-allauth
+drf-oidc-auth
+django
+pytest
+pytest-cov
+pytest-django
+pytest-mock
+responses
