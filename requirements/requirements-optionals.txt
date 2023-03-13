@@ -1,0 +1,3 @@
+django-allauth
+drf-oidc-auth
+django
