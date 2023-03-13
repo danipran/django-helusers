@@ -39,11 +39,11 @@ jobs:
 
     - name: Run tox targets for ${{ matrix.python_version }}
       if: ${{ matrix.python_version != '3.6' }}
-      run: tox run -f py$(echo ${{ matrix.python_version }} | tr -d .) {{ env.TOX_POSARGS }}
+      run: tox run -f py$(echo ${{ matrix.python_version }} | tr -d .) ${{ env.TOX_POSARGS }}
 
     - name: Run tox targets for ${{ matrix.python_version }}
       if: ${{ matrix.python_version == '3.6' }}
-      run: tox --py current {{ env.TOX_POSARGS }}
+      run: tox --py current ${{ env.TOX_POSARGS }}
 
     - name: Upload Coverage to Codecov
       if: ${{ matrix.python_version == '3.9' }}
