@@ -10,6 +10,8 @@ jobs:
   test:
     name: Python ${{ matrix.python_version }}
     runs-on: ubuntu-20.04  # Ubuntu 20.04 is required for Python 3.6
+    env:
+      TOX_POSARGS: --cov=. --cov-report=xml
     strategy:
       matrix:
         python_version: ['3.6', '3.7', '3.8', '3.9', '3.10', '3.11']
@@ -37,12 +39,12 @@ jobs:
 
     - name: Run tox targets for ${{ matrix.python_version }}
       if: ${{ matrix.python_version != '3.6' }}
-      run: tox run -f py$(echo ${{ matrix.python_version }} | tr -d .)
+      run: tox run -f py$(echo ${{ matrix.python_version }} | tr -d .) {{ env.TOX_POSARGS }}
 
     - name: Run tox targets for ${{ matrix.python_version }}
       if: ${{ matrix.python_version == '3.6' }}
-      run: tox --py current
+      run: tox --py current {{ env.TOX_POSARGS }}
 
     - name: Upload Coverage to Codecov
       if: ${{ matrix.python_version == '3.9' }}
-      uses: codecov/codecov-action@v2
+      uses: codecov/codecov-action@v3
