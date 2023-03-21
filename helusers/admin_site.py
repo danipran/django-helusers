@@ -5,6 +5,7 @@ from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.utils.decorators import method_decorator
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.cache import never_cache
 
@@ -72,7 +73,7 @@ class AdminSite(admin.AdminSite):
 
         return ret
 
-    @never_cache
+    @method_decorator(never_cache)
     def logout(self, request, extra_context=None):
         if request.session and request.session.get('social_auth_end_session_url'):
             logout_url = reverse('helusers:auth_logout')
